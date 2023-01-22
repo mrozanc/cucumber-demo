@@ -1,22 +1,32 @@
 package fr.rozanc.sandbox.cucumber.demo;
 
-import io.cucumber.java8.En;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.byLessThan;
 
-public class CalculatorStepDefs implements En {
+public class CalculatorStepDefs {
 
-    public CalculatorStepDefs(final World world) {
-        Given("a calculator I just turned on", () -> {
-            world.calculator = new SimpleCalculator();
-        });
+    private final CalculatorContext calculatorContext;
 
-        When("I input {string} on the calculator", (String input) -> {
-            world.calculator.input(input);
-        });
+    public CalculatorStepDefs(final CalculatorContext calculatorContext) {
+        this.calculatorContext = calculatorContext;
+    }
 
-        Then("the calculator displays the value: {double}", (Double expectedValue) -> {
-            assertEquals(expectedValue, world.calculator.getCurrentValue());
-        });
+    @Given("a calculator I just turned on")
+    public void givenACalculatorIJustTurnedOn() {
+        calculatorContext.calculator = new SimpleCalculator();
+    }
+
+    @When("I input {string} on the calculator")
+    public void whenIInputOnTheCalculator(final String input) {
+        calculatorContext.calculator.input(input);
+    }
+
+    @Then("the calculator displays the value: {double}")
+    public void thenTheCalculatorDisplaysTheValue(final double expectedValue) {
+        assertThat(calculatorContext.calculator.getCurrentValue()).isEqualTo(expectedValue, byLessThan(1e-9));
     }
 }
