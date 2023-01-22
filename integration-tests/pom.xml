@@ -5,24 +5,23 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>cucumber-demo</artifactId>
     <groupId>fr.rozanc.sandbox</groupId>
+    <artifactId>cucumber-demo-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../parent</relativePath>
   </parent>
 
-  <artifactId>integration-tests</artifactId>
+  <artifactId>cucumber-demo-integration-tests</artifactId>
 
   <dependencies>
     <dependency>
       <groupId>fr.rozanc.sandbox</groupId>
-      <artifactId>stepdefs</artifactId>
-      <version>${project.version}</version>
+      <artifactId>cucumber-demo-stepdefs</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>fr.rozanc.sandbox</groupId>
-      <artifactId>calculator</artifactId>
-      <version>${project.version}</version>
+      <artifactId>cucumber-demo-calculator</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -32,7 +31,7 @@
     </dependency>
     <dependency>
       <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-console</artifactId>
+      <artifactId>junit-platform-suite</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -41,41 +40,11 @@
     <plugins>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>default-test</id>
-            <phase>none</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <!-- Work around. Surefire does not use JUnits Test Engine discovery functionality.
-                 Alternatively annotate a class with `io.cucumber.junit.platform.engine.Cucumber`
-                 to mark its package for the discovery of feature files.  -->
-            <id>CLI-test</id>
-            <phase>test</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <target unless="maven.test.skip">
-                <java classname="org.junit.platform.console.ConsoleLauncher" fork="true" failonerror="true" newenvironment="true" maxmemory="512m" classpathref="maven.test.classpath">
-                  <arg value="--include-engine" />
-                  <arg value="cucumber" />
-                  <arg value="--scan-classpath" />
-                  <arg value="${project.build.testOutputDirectory}" />
-                  <arg value="--reports-dir" />
-                  <arg value="${project.build.directory}/cucumber-reports" />
-                  <arg value="--config" />
-                  <arg value="cucumber.glue=fr.rozanc.sandbox.cucumber.demo" />
-                </java>
-              </target>
-            </configuration>
-          </execution>
-        </executions>
+        <configuration>
+          <configurationParameters>
+            cucumber.junit-platform.naming-strategy=long
+          </configurationParameters>
+        </configuration>
       </plugin>
     </plugins>
   </build>

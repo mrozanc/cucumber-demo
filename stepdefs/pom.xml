@@ -5,18 +5,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>cucumber-demo</artifactId>
     <groupId>fr.rozanc.sandbox</groupId>
+    <artifactId>cucumber-demo-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../parent</relativePath>
   </parent>
 
-  <artifactId>stepdefs</artifactId>
+  <artifactId>cucumber-demo-stepdefs</artifactId>
 
   <dependencies>
     <dependency>
       <groupId>fr.rozanc.sandbox</groupId>
-      <artifactId>calculator</artifactId>
-      <version>${project.version}</version>
+      <artifactId>cucumber-demo-calculator</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
