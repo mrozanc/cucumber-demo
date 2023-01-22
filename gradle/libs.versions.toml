@@ -1,0 +1,23 @@
+[versions]
+assertj = "3.24.2"
+cucumber = "7.11.0"
+guava = "31.1-jre"
+junit = "5.9.2"
+
+[libraries]
+assertj-bom = { module = "org.assertj:assertj-bom", version.ref = "assertj" }
+assertj-core = { module = "org.assertj:assertj-core" }
+assertj-guava = { module = "org.assertj:assertj-guava" }
+
+cucumber-bom = { module = "io.cucumber:cucumber-bom", version.ref = "cucumber" }
+cucumber-java = { module = "io.cucumber:cucumber-java" }
+cucumber-java8 = { module = "io.cucumber:cucumber-java8" }
+cucumber-junit-platform-engine = { module = "io.cucumber:cucumber-junit-platform-engine" }
+cucumber-picocontainer = { module = "io.cucumber:cucumber-picocontainer" }
+
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+junit-platform-suite = { module = "org.junit.platform:junit-platform-suite" }
