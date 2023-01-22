@@ -1,7 +1,10 @@
+import org.gradle.api.internal.artifacts.configurations.ResolutionStrategyInternal
+
 plugins {
     `java-library`
     `jvm-test-suite`
     jacoco
+    `jacoco-report-aggregation`
     `maven-publish`
 }
 
@@ -27,6 +30,10 @@ java {
         usingSourceSet(sourceSets["stepdefs"])
         withJavadocJar()
         withSourcesJar()
+    }
+
+    consistentResolution {
+        useCompileClasspathVersions()
     }
 }
 
@@ -58,6 +65,36 @@ testing {
     }
 }
 
+configurations {
+    compileClasspath {
+        resolutionStrategy.activateDependencyLocking()
+    }
+    runtimeClasspath {
+        resolutionStrategy.activateDependencyLocking()
+    }
+    annotationProcessor {
+        resolutionStrategy.activateDependencyLocking()
+    }
+    "testCompileClasspath" {
+        resolutionStrategy.activateDependencyLocking()
+    }
+    "testRuntimeClasspath" {
+        resolutionStrategy.activateDependencyLocking()
+    }
+    "stepdefsCompileClasspath" {
+        resolutionStrategy.activateDependencyLocking()
+    }
+    "stepdefsRuntimeClasspath" {
+        resolutionStrategy.activateDependencyLocking()
+    }
+    "functionalTestCompileClasspath" {
+        resolutionStrategy.activateDependencyLocking()
+    }
+    "functionalTestRuntimeClasspath" {
+        resolutionStrategy.activateDependencyLocking()
+    }
+}
+
 dependencies {
     implementation(platform(project(":${rootProject.name}-dependencies")))
     testImplementation(platform(project(":${rootProject.name}-dependencies")))
@@ -69,12 +106,38 @@ publishing {
     publications {
         create("mavenJava", MavenPublication::class.java) {
             from(components["java"])
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
         }
     }
 }
 
 tasks {
+    withType<AbstractArchiveTask> {
+        isPreserveFileTimestamps = false
+        isReproducibleFileOrder = true
+    }
+
     named("check") {
         dependsOn(testing.suites.named("functionalTest"))
+    }
+
+    register("resolveAndLockAll") {
+        group = "help"
+        doFirst {
+            require(gradle.startParameter.isWriteDependencyLocks)
+        }
+        doLast {
+            configurations.filter {
+                // Add any custom filtering on the configurations to be resolved
+                it.isCanBeResolved && (it.resolutionStrategy as ResolutionStrategyInternal).isDependencyLockingEnabled
+            }.forEach { it.resolve() }
+        }
     }
 }

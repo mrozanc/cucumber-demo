@@ -11,7 +11,7 @@ dependencies {
     stepdefsImplementation(libs.cucumber.picocontainer)
     stepdefsImplementation(libs.assertj.guava)
     stepdefsImplementation(libs.assertj.core)
-    stepdefsApi(libs.cucumber.java)
+    stepdefsImplementation(libs.cucumber.java)
 
     functionalTestImplementation(libs.cucumber.junit.platform.engine)
     functionalTestImplementation(libs.junit.platform.suite)
