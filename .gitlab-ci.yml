@@ -18,11 +18,6 @@ cache: &global_cache
     - .gradle
   policy: pull-push
 
-job:
-  cache:
-    <<: *global_cache
-    policy: pull
-
 before_script:
   - GRADLE_USER_HOME="$(pwd)/.gradle"
   - export GRADLE_USER_HOME
