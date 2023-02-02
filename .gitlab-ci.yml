@@ -1,0 +1,48 @@
+# This file is a template, and might need editing before it works on your project.
+# You can copy and paste this template into a new `.gitlab-ci.yml` file.
+# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Gradle.gitlab-ci.yml
+
+# This is the Gradle build system for JVM applications
+# https://gradle.org/
+# https://github.com/gradle/gradle
+
+image: maven:3-eclipse-temurin-17-alpine
+
+cache: &global_cache
+  key: cucumber-demo
+  paths:
+    - .gradle
+  policy: pull-push
+
+job:
+  cache:
+    <<: *global_cache
+    policy: pull
+
+before_script:
+  - GRADLE_USER_HOME="$(pwd)/.gradle"
+  - export GRADLE_USER_HOME
+
+build:
+  stage: build
+  script: ./gradlew assemble
+  cache:
+    - <<: *global_cache
+    - key: "$CI_COMMIT_REF_NAME"
+      policy: push
+      paths:
+        - build
+
+test:
+  stage: test
+  script: ./gradlew check
+  cache:
+    - <<: *global_cache
+    - key: "$CI_COMMIT_REF_NAME"
+      policy: pull
+      paths:
+        - build
