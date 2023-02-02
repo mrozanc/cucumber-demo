@@ -1,6 +1,5 @@
 package fr.rozanc.sandbox.cucumber.demo;
 
-import com.google.common.collect.ImmutableMap;
 import fr.rozanc.sandbox.cucumber.demo.operations.Addition;
 import fr.rozanc.sandbox.cucumber.demo.operations.CalculatorOperation;
 import fr.rozanc.sandbox.cucumber.demo.operations.Division;
@@ -17,11 +16,11 @@ import java.util.Queue;
 public class SimpleCalculator implements Calculator {
 
     private static final Map<String, CalculatorOperation> OPERATIONS
-            = ImmutableMap.of("+", new Addition(),
-                              "-", new Subtraction(),
-                              "*", new Multiplication(),
-                              "/", new Division(),
-                              "=", new Evaluation());
+            = Map.of("+", new Addition(),
+                     "-", new Subtraction(),
+                     "*", new Multiplication(),
+                     "/", new Division(),
+                     "=", new Evaluation());
 
     private final Queue<String> inputRegistry = new LinkedList<>();
 

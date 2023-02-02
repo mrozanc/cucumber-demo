@@ -41,3 +41,13 @@ test:
       policy: pull
       paths:
         - build
+
+publish:
+  stage: deploy
+  script: ./gradlew publish
+  cache:
+    - <<: *global_cache
+    - key: "$CI_COMMIT_REF_NAME"
+      policy: pull
+      paths:
+        - build

@@ -1,6 +1,6 @@
 plugins {
-    base
-    `jacoco-report-aggregation`
+    id("base")
+    id("jacoco-report-aggregation")
 }
 
 allprojects {

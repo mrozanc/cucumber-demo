@@ -1,6 +1,6 @@
 plugins {
-    `java-platform`
-    `maven-publish`
+    id("java-platform")
+    id("maven-publish")
 }
 
 publishing {

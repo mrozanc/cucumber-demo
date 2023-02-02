@@ -1,11 +1,12 @@
 import org.gradle.api.internal.artifacts.configurations.ResolutionStrategyInternal
 
 plugins {
-    `java-library`
-    `jvm-test-suite`
-    jacoco
-    `jacoco-report-aggregation`
-    `maven-publish`
+    id("java-library")
+    id("io.freefair.lombok")
+    id("jvm-test-suite")
+    id("jacoco")
+    id("jacoco-report-aggregation")
+    id("maven-publish")
 }
 
 sourceSets {
@@ -113,6 +114,19 @@ publishing {
                 usage("java-runtime") {
                     fromResolutionResult()
                 }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "GitLab"
+            url = uri("${System.getenv("CI_API_V4_URL")}/projects/${System.getenv("CI_PROJECT_ID")}/packages/maven")
+            credentials(HttpHeaderCredentials::class) {
+                name = "Deploy-Token"
+                value = System.getenv("CI_JOB_TOKEN")
+            }
+            authentication {
+                create<HttpHeaderAuthentication>("header")
             }
         }
     }

@@ -1,12 +1,7 @@
 # This is a Gradle generated file for dependency locking.
 # Manual edits can break the build and are not advised.
 # This file is expected to be part of source control.
-com.google.code.findbugs:jsr305:3.0.2=compileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.google.errorprone:error_prone_annotations:2.11.0=compileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.google.guava:failureaccess:1.0.1=compileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.google.guava:guava:31.1-jre=compileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava=compileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
-com.google.j2objc:j2objc-annotations:1.3=compileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
+com.fasterxml.jackson:jackson-bom:2.14.1=compileClasspath,functionalTestCompileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath,testCompileClasspath,testRuntimeClasspath
 io.cucumber:ci-environment:9.1.0=functionalTestCompileClasspath,functionalTestRuntimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath
 io.cucumber:cucumber-bom:7.11.0=compileClasspath,functionalTestCompileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath,testCompileClasspath,testRuntimeClasspath
 io.cucumber:cucumber-core:7.11.0=functionalTestCompileClasspath,functionalTestRuntimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath
@@ -28,8 +23,6 @@ net.bytebuddy:byte-buddy:1.12.21=functionalTestRuntimeClasspath,stepdefsCompileC
 org.apiguardian:apiguardian-api:1.1.2=functionalTestCompileClasspath,functionalTestRuntimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath,testCompileClasspath
 org.assertj:assertj-bom:3.24.2=compileClasspath,functionalTestCompileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.assertj:assertj-core:3.24.2=functionalTestRuntimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath,testCompileClasspath,testRuntimeClasspath
-org.assertj:assertj-guava:3.24.2=functionalTestRuntimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath
-org.checkerframework:checker-qual:3.12.0=compileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.junit.jupiter:junit-jupiter-api:5.9.2=functionalTestCompileClasspath,functionalTestRuntimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.junit.jupiter:junit-jupiter-engine:5.9.2=functionalTestRuntimeClasspath,testRuntimeClasspath
 org.junit.jupiter:junit-jupiter-params:5.9.2=functionalTestCompileClasspath,functionalTestRuntimeClasspath,testCompileClasspath,testRuntimeClasspath
@@ -44,4 +37,5 @@ org.junit.platform:junit-platform-suite:1.9.2=functionalTestCompileClasspath,fun
 org.junit:junit-bom:5.9.2=compileClasspath,functionalTestCompileClasspath,functionalTestRuntimeClasspath,runtimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.opentest4j:opentest4j:1.2.0=functionalTestCompileClasspath,functionalTestRuntimeClasspath,testCompileClasspath,testRuntimeClasspath
 org.picocontainer:picocontainer:2.15=functionalTestRuntimeClasspath,stepdefsCompileClasspath,stepdefsRuntimeClasspath
-empty=annotationProcessor
+org.projectlombok:lombok:1.18.24=annotationProcessor,compileClasspath,functionalTestCompileClasspath,stepdefsCompileClasspath,testCompileClasspath
+empty=
